@@ -51,6 +51,8 @@ int main(void)
     {
       ballX = SCREEN_WIDTH / 2;
       ballY = SCREEN_HEIGHT / 2;
+      ballSpeedX *= -1;
+      ballSpeedY *= -1;
     }
 
     // Check for collision with player 1
