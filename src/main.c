@@ -61,7 +61,7 @@ void updateBallMovement()
     ballSpeedY *= -1;
 
   // Check if ball has reached left/right borders (teleport ball back to center)
-  if (ballX < 0 || ballX > (SCREEN_WIDTH - 10))
+  if (ballX < 10 || ballX > (SCREEN_WIDTH - 10))
   {
     ballX = SCREEN_WIDTH / 2;
     ballY = SCREEN_HEIGHT / 2;
