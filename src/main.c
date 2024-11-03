@@ -29,6 +29,12 @@ void draw()
   BeginDrawing();
   ClearBackground(BLACK);
 
+  // Line dividing the field
+  for (int i = 0; i <= 400; i += 100)
+  {
+    DrawRectangle((SCREEN_WIDTH / 2), i, (PADDLE_WIDTH / 2), 50, WHITE);
+  }
+
   // Player 1 paddle
   DrawRectangle(20, player1Y, PADDLE_WIDTH, PADDLE_HEIGHT, WHITE);
   // Player 2 paddle
