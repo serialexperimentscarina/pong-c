@@ -10,6 +10,7 @@
 #define BALL_SPEED 5
 
 int player1Y, player2Y;
+int player1Score, player2Score;
 int ballX, ballY;
 int ballSpeedX, ballSpeedY;
 
@@ -19,6 +20,7 @@ void initialize()
   SetTargetFPS(60);
 
   player1Y = player2Y = ((SCREEN_HEIGHT / 2) - (PADDLE_HEIGHT / 2));
+  player1Score = player2Score = 0;
   ballX = SCREEN_WIDTH / 2;
   ballY = SCREEN_HEIGHT / 2;
   ballSpeedX = ballSpeedY = BALL_SPEED;
@@ -41,6 +43,10 @@ void draw()
   DrawRectangle(SCREEN_WIDTH - 30, player2Y, PADDLE_WIDTH, PADDLE_HEIGHT, WHITE);
   // Ball
   DrawRectangle(ballX, ballY, BALL_WIDTH, BALL_HEIGHT, WHITE);
+
+  // Score
+  DrawText(TextFormat("%d", player1Score), 200, 80, 50, WHITE);
+  DrawText(TextFormat("%d", player2Score), 600, 80, 50, WHITE);
 
   EndDrawing();
 }
@@ -66,9 +72,11 @@ void updateBallMovement()
   if (ballY < 0 || ballY > (SCREEN_HEIGHT - 10))
     ballSpeedY *= -1;
 
-  // Check if ball has reached left/right borders (teleport ball back to center)
+  // Check if ball has reached left border (teleport ball back to center and increase score of last player to hit ball)
   if (ballX < 10 || ballX > (SCREEN_WIDTH - 10))
   {
+    ballX < 10 ? player2Score++ : player1Score++;
+
     ballX = SCREEN_WIDTH / 2;
     ballY = SCREEN_HEIGHT / 2;
     ballSpeedX *= -1;
