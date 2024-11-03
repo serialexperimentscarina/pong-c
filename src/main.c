@@ -88,12 +88,14 @@ void updateBallMovement()
   {
     ballSpeedX *= -1;
     ballSpeedY *= -1;
+    ballX = 20 + PADDLE_WIDTH;
   }
   // Check for collision with player 2
   if (ballX > (SCREEN_WIDTH - 30 - PADDLE_WIDTH) && (ballY > player2Y && ballY < (player2Y + PADDLE_HEIGHT)))
   {
     ballSpeedX *= -1;
     ballSpeedY *= -1;
+    ballX = SCREEN_WIDTH - 30 - PADDLE_WIDTH;
   }
 
   ballX += ballSpeedX;
