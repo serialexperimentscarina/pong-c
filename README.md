@@ -10,7 +10,8 @@ A pong game clone written in C using the **raylib** library.
 ## Getting Started on Windows
 ### Prerequisites
 - **raylib**
-- **mingw32** (or any compatible C compiler) installed and set on system PATH.
+- **mingw32** (or alternative C99 compiler) installed and set on system PATH. **(ON WINDOWS)**
+- **GCC** (or alternative C99 compiler) **(ON LINUX)**
 
 ### Installing 
 
@@ -19,6 +20,11 @@ A pong game clone written in C using the **raylib** library.
    git clone https://github.com/serialexperimentscarina/pong-c.git
    cd pong-c
 2. **Compile the game:**
-   ```
-   cd ./build
-   mingw32-make
+  - On **Windows**:
+      ```
+      cd ./build
+      mingw32-make
+  - On **Linux**:
+      ```
+      cd ./build
+      bash build.bash
