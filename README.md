@@ -7,7 +7,7 @@ A pong game clone written in C using the **raylib** library.
 - Player 1: W (up) / S (down)
 - Player 2: Arrow keys ↑ (up) / ↓ (down)
 
-## Getting Started on Windows
+## Getting Started
 ### Prerequisites
 - **raylib**
 - **mingw32** (or alternative C99 compiler) installed and set on system PATH. **(ON WINDOWS)**
