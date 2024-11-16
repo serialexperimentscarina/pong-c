@@ -16,7 +16,13 @@ int ballSpeedX, ballSpeedY;
 
 void initialize()
 {
+  // Initialize window
   InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "pong");
+  // Set icon
+  Image icon = LoadImage("../assets/icon.png");
+  SetWindowIcon(icon);
+  UnloadImage(icon);
+  // Set Target FPS
   SetTargetFPS(60);
 
   player1Y = player2Y = ((SCREEN_HEIGHT / 2) - (PADDLE_HEIGHT / 2));
