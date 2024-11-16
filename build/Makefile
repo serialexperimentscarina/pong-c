@@ -1,2 +1,3 @@
 default:
-	gcc ../src/main.c -o pong.exe -O1 -Wall -std=c99 -Wno-missing-braces -I ../include/ -L ../lib/ -lraylib -lopengl32 -lgdi32 -lwinmm
+	windres ../src/game.rc -O coff -o game.res
+	gcc ../src/main.c game.res -o pong.exe -O1 -Wall -std=c99 -Wno-missing-braces -I ../include/ -L ../lib/ -lraylib -lopengl32 -lgdi32 -lwinmm

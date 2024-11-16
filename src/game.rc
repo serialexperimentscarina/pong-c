@@ -1,0 +1,27 @@
+GLFW_ICON ICON "../assets/icon.ico"
+
+1 VERSIONINFO
+FILEVERSION     1,0,0,0
+PRODUCTVERSION  1,0,0,0
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    //BLOCK "080904E4"  // English UK
+    BLOCK "040904E4"    // English US
+    BEGIN
+      VALUE "CompanyName", "serialexperimentscarina"
+      VALUE "FileDescription", "pong game"
+      VALUE "FileVersion", "1.0.0"
+      VALUE "InternalName", "pong"
+      VALUE "LegalCopyright", ""
+      VALUE "OriginalFilename", "pong"
+      VALUE "ProductName", "pong"
+      VALUE "ProductVersion", "1.0.0"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    //VALUE "Translation", 0x809, 1252  // English UK
+    VALUE "Translation", 0x409, 1252    // English US
+  END
+END
