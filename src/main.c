@@ -13,17 +13,23 @@ int player1Y, player2Y;
 int player1Score, player2Score;
 int ballX, ballY;
 int ballSpeedX, ballSpeedY;
+Image icon;
+Sound fxHit;
 
 void initialize()
 {
   // Initialize window
   InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "pong");
   // Set icon
-  Image icon = LoadImage("../assets/icon.png");
+  icon = LoadImage("../assets/icon.png");
   SetWindowIcon(icon);
   UnloadImage(icon);
   // Set Target FPS
   SetTargetFPS(60);
+
+  // Initialize audio device
+  InitAudioDevice();
+  fxHit = LoadSound("../assets/hit.wav");
 
   player1Y = player2Y = ((SCREEN_HEIGHT / 2) - (PADDLE_HEIGHT / 2));
   player1Score = player2Score = 0;
@@ -95,6 +101,7 @@ void updateBallMovement()
     ballSpeedX *= -1;
     ballSpeedY *= -1;
     ballX = 20 + PADDLE_WIDTH;
+    PlaySound(fxHit);
   }
   // Check for collision with player 2
   if (ballX > (SCREEN_WIDTH - 30 - PADDLE_WIDTH) && (ballY > player2Y && ballY < (player2Y + PADDLE_HEIGHT)))
@@ -102,6 +109,7 @@ void updateBallMovement()
     ballSpeedX *= -1;
     ballSpeedY *= -1;
     ballX = SCREEN_WIDTH - 30 - PADDLE_WIDTH;
+    PlaySound(fxHit);
   }
 
   ballX += ballSpeedX;
@@ -119,6 +127,10 @@ int main(void)
     draw();
   }
 
+  // De-initialization
+  UnloadSound(fxHit);
+  UnloadImage(icon);
+  CloseAudioDevice();
   CloseWindow();
   return 0;
 }
