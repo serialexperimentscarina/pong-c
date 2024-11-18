@@ -14,7 +14,7 @@ int player1Score, player2Score;
 int ballX, ballY;
 int ballSpeedX, ballSpeedY;
 Image icon;
-Sound fxHit;
+Sound fxHit, fxScore;
 
 void initialize()
 {
@@ -30,6 +30,7 @@ void initialize()
   // Initialize audio device
   InitAudioDevice();
   fxHit = LoadSound("../assets/hit.wav");
+  fxScore = LoadSound("../assets/score.wav");
 
   player1Y = player2Y = ((SCREEN_HEIGHT / 2) - (PADDLE_HEIGHT / 2));
   player1Score = player2Score = 0;
@@ -88,6 +89,7 @@ void updateBallMovement()
   if (ballX < 10 || ballX > (SCREEN_WIDTH - 10))
   {
     ballX < 10 ? player2Score++ : player1Score++;
+    PlaySound(fxScore);
 
     ballX = SCREEN_WIDTH / 2;
     ballY = SCREEN_HEIGHT / 2;
@@ -129,6 +131,7 @@ int main(void)
 
   // De-initialization
   UnloadSound(fxHit);
+  UnloadSound(fxScore);
   UnloadImage(icon);
   CloseAudioDevice();
   CloseWindow();
