@@ -105,7 +105,11 @@ void updateBallMovement()
   if (ballX < 10 || ballX > (SCREEN_WIDTH - 10))
   {
     ballX < 10 ? player2Score++ : player1Score++;
-    PlaySound(fxScore);
+
+    if (audio)
+    {
+      PlaySound(fxScore);
+    }
 
     ballX = SCREEN_WIDTH / 2;
     ballY = SCREEN_HEIGHT / 2;
@@ -119,7 +123,11 @@ void updateBallMovement()
     ballSpeedX *= -1;
     ballSpeedY *= -1;
     ballX = 20 + PADDLE_WIDTH;
-    PlaySound(fxHit);
+
+    if (audio)
+    {
+      PlaySound(fxHit);
+    }
   }
   // Check for collision with player 2
   if (ballX > (SCREEN_WIDTH - 30 - PADDLE_WIDTH) && (ballY > player2Y && ballY < (player2Y + PADDLE_HEIGHT)))
@@ -127,7 +135,11 @@ void updateBallMovement()
     ballSpeedX *= -1;
     ballSpeedY *= -1;
     ballX = SCREEN_WIDTH - 30 - PADDLE_WIDTH;
-    PlaySound(fxHit);
+
+    if (audio)
+    {
+      PlaySound(fxHit);
+    }
   }
 
   ballX += ballSpeedX;
