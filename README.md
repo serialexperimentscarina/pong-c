@@ -2,7 +2,7 @@
 
 A pong game clone written in C using the **raylib** library.
 
-![screenshot](https://github.com/user-attachments/assets/aface784-f5bd-420a-aab6-3263c5d3cd5e)
+![screenshot](https://github.com/user-attachments/assets/63309c72-f3b0-4c5c-beff-82048932b1ed)
 
 ## Controls
 
