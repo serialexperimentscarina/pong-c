@@ -8,7 +8,6 @@ A pong game clone written in C using the **raylib** library.
 
 - Player 1: W (up) / S (down)
 - Player 2: Arrow keys ↑ (up) / ↓ (down)
-
 - Mute/Unmute Audio: M
 
 ## Getting Started
