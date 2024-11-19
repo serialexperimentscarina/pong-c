@@ -14,7 +14,7 @@ int player1Score, player2Score;
 int ballX, ballY;
 int ballSpeedX, ballSpeedY;
 Image icon;
-Texture2D sound, mutedSound;
+Texture2D soundTexture, mutedSoundTexture;
 Sound fxHit, fxScore;
 bool audio;
 
@@ -36,14 +36,14 @@ void initialize()
   audio = true;
 
   // Initialize sounds icons
-  Image imageSound = LoadImage("../assets/sound.png");
-  Image imageMutedSound = LoadImage("../assets/muted_sound.png");
-  sound = LoadTextureFromImage(imageSound);
-  mutedSound = LoadTextureFromImage(imageMutedSound);
+  Image soundImage = LoadImage("../assets/sound.png");
+  Image mutedSoundImage = LoadImage("../assets/muted_sound.png");
+  soundTexture = LoadTextureFromImage(soundImage);
+  mutedSoundTexture = LoadTextureFromImage(mutedSoundImage);
 
   // Free image from RAM
-  UnloadImage(imageSound);
-  UnloadImage(imageMutedSound);
+  UnloadImage(soundImage);
+  UnloadImage(mutedSoundImage);
 
   player1Y = player2Y = ((SCREEN_HEIGHT / 2) - (PADDLE_HEIGHT / 2));
   player1Score = player2Score = 0;
@@ -75,7 +75,7 @@ void draw()
   DrawText(TextFormat("%d", player2Score), 600, 80, 50, WHITE);
 
   // Draw sound icon
-  DrawTexture((audio ? sound : mutedSound), 10, 420, WHITE);
+  DrawTexture((audio ? soundTexture : mutedSoundTexture), 10, 420, WHITE);
 
   EndDrawing();
 }
@@ -159,8 +159,8 @@ void deinitializeVariables()
   UnloadSound(fxHit);
   UnloadSound(fxScore);
   UnloadImage(icon);
-  UnloadTexture(sound);
-  UnloadTexture(mutedSound);
+  UnloadTexture(soundTexture);
+  UnloadTexture(mutedSoundTexture);
 }
 
 int main(void)
