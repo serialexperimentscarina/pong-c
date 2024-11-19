@@ -14,7 +14,9 @@ int player1Score, player2Score;
 int ballX, ballY;
 int ballSpeedX, ballSpeedY;
 Image icon;
+Texture2D sound, mutedSound;
 Sound fxHit, fxScore;
+bool audio;
 
 void initialize()
 {
@@ -27,10 +29,21 @@ void initialize()
   // Set Target FPS
   SetTargetFPS(60);
 
-  // Initialize audio device
+  // Initialize audio device & audio files
   InitAudioDevice();
   fxHit = LoadSound("../assets/hit.wav");
   fxScore = LoadSound("../assets/score.wav");
+  audio = true;
+
+  // Initialize sounds icons
+  Image imageSound = LoadImage("../assets/sound.png");
+  Image imageMutedSound = LoadImage("../assets/muted_sound.png");
+  sound = LoadTextureFromImage(imageSound);
+  mutedSound = LoadTextureFromImage(imageMutedSound);
+
+  // Free image from RAM
+  UnloadImage(imageSound);
+  UnloadImage(imageMutedSound);
 
   player1Y = player2Y = ((SCREEN_HEIGHT / 2) - (PADDLE_HEIGHT / 2));
   player1Score = player2Score = 0;
@@ -60,6 +73,9 @@ void draw()
   // Score
   DrawText(TextFormat("%d", player1Score), 200, 80, 50, WHITE);
   DrawText(TextFormat("%d", player2Score), 600, 80, 50, WHITE);
+
+  // Draw sound icon
+  DrawTexture((audio ? sound : mutedSound), 10, 420, WHITE);
 
   EndDrawing();
 }
@@ -118,6 +134,23 @@ void updateBallMovement()
   ballY += ballSpeedY;
 }
 
+void updateAudioState()
+{
+  if (IsKeyPressed(KEY_M))
+  {
+    audio = !audio;
+  }
+}
+
+void deinitializeVariables()
+{
+  UnloadSound(fxHit);
+  UnloadSound(fxScore);
+  UnloadImage(icon);
+  UnloadTexture(sound);
+  UnloadTexture(mutedSound);
+}
+
 int main(void)
 {
   initialize();
@@ -126,13 +159,12 @@ int main(void)
   {
     updatePaddleMovement();
     updateBallMovement();
+    updateAudioState();
     draw();
   }
 
   // De-initialization
-  UnloadSound(fxHit);
-  UnloadSound(fxScore);
-  UnloadImage(icon);
+  deinitializeVariables();
   CloseAudioDevice();
   CloseWindow();
   return 0;
